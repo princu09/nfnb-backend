@@ -4,6 +4,8 @@ const User = require("../models/User");
 const { body, validationResult } = require("express-validator");
 const bcrypt = require("bcryptjs");
 var jwt = require("jsonwebtoken");
+const fetchuser = require("../middleware/fetchuser")
+
 
 const JWT_SECRET = "NorthFoxGroup";
 
@@ -54,7 +56,6 @@ router.post(
 );
 
 // Authenticate a user using : POST "/api/auth/login"
-
 router.post(
   "/login",
   [
@@ -82,11 +83,26 @@ router.post(
         },
       };
       const authtoken = jwt.sign(data, JWT_SECRET);
-      res.json({authtoken})
+      res.json({ authtoken });
     } catch (error) {
       console.error(error.message);
       res.status(500).send("Internal Server Error");
     }
   }
 );
+
+// Get Loggedin user details using : POST "api/auth/getuser" Login Required
+router.post(
+  "/getuser", fetchuser , async (req, res) => {
+    try {
+      userId = req.user.id;
+      const user = await User.findById(userId).select("-password");
+      res.send(user)
+    } catch (error) {
+      console.error(error.message);
+      res.status(500).send("Internal Server Error");
+    }
+  }
+);
+
 module.exports = router;
