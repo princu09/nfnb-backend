@@ -9,7 +9,7 @@ const fetchuser = require("../middleware/fetchuser")
 
 const JWT_SECRET = "NorthFoxGroup";
 
-// Create a user using : POST "api/auth/createuser". Doesn't require auth
+// Route : 1 | Create a user using : POST "api/auth/createuser". Doesn't require auth
 router.post(
   "/createuser",
   [
@@ -55,7 +55,7 @@ router.post(
   }
 );
 
-// Authenticate a user using : POST "/api/auth/login"
+// Route : 2 | Authenticate a user using : POST "/api/auth/login"
 router.post(
   "/login",
   [
@@ -91,7 +91,7 @@ router.post(
   }
 );
 
-// Get Loggedin user details using : POST "api/auth/getuser" Login Required
+// Route : 3 | Get Loggedin user details using : POST "api/auth/getuser" Login Required
 router.post(
   "/getuser", fetchuser , async (req, res) => {
     try {
