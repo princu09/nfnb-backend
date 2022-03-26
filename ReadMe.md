@@ -21,7 +21,9 @@ git clone https://github.com/princu09/nfnb-backend.git
 * **Add New Note API**
 <span style="color:#E67E22;font-style: italic">localhost:3001/api/notes/addnote</span>
 * **Update Notes API**
-<span style="color:#E67E22;font-style: italic">localhost:3001/api/notes/updatenote</span>
+<span style="color:#E67E22;font-style: italic">localhost:3001/api/notes/updatenote/:id</span>
+* **Delete Notes API**
+<span style="color:#E67E22;font-style: italic">localhost:3001/api/notes/deletenote/:id</span>
 
 
 ## Modules
